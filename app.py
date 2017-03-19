@@ -1,9 +1,7 @@
 import voiceDetection as vd
 from os import system
 import psycopg2
-import base64
 import sys
-import requests
 from passlib.hash import pbkdf2_sha256
 
 def login(conn, username, password):

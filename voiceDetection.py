@@ -1,6 +1,5 @@
 import speech_recognition as sr
 from os import system
-from os.path import dirname
 import requests
 import send_messages as sm
 import random
