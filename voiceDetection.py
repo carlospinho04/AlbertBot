@@ -52,17 +52,14 @@ def get_name():
 
 def get_recipe(phone_number):
     recipe = get_request('recipe')
-    try:
-        food = requests.get('https://api.edamam.com/search?q={}&app_id=appid&app_key=appkey'.format(recipe)).json()
-        ingredients = ''
-        selected_recipe = random.choice(food['hits'])
-        for ingredient in selected_recipe['recipe']['ingredientLines']:
-            ingredients += ingredient + '\n'
-        ingredients += "Site: \n"
-        ingredients += food['hits'][1]['recipe']['url']
-        sm.send_message(phone_number, ingredients)
-    except:
-        system('say Sorry, something went wrong!')
+    food = requests.get('https://api.edamam.com/search?q={}&app_id=app_id&app_key=app_key'.format(recipe)).json()
+    ingredients = ''
+    selected_recipe = random.choice(food['hits'])
+    for ingredient in selected_recipe['recipe']['ingredientLines']:
+        ingredients += ingredient + '\n'
+    ingredients += "Site: \n"
+    ingredients += selected_recipe['recipe']['url']
+    sm.send_message(phone_number, ingredients)
 
 def get_joke():
     joke = requests.get('http://api.icndb.com/jokes/random').json()['value']['joke']
@@ -75,7 +72,7 @@ def get_weather():
     system('say Which city do you want to know the weather for?')
     try:
         city = r.recognize_google(get_audio())
-        weather = requests.get('http://api.openweathermap.org/data/2.5/weather?q={}&appid=appid'.format(city)).json()
+        weather = requests.get('http://api.openweathermap.org/data/2.5/weather?q={}&appid=app_id'.format(city)).json()
         temperature = float("{0:.1f}".format(weather['main']['temp'] - 273.15))
         system('say The current weather for {} is {} and the temperature is {} degrees'.format(weather['name'], weather['weather'][0]['main'], temperature))
     except:

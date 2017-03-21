@@ -21,8 +21,6 @@ def set_name(conn, username, name):
     cursor = conn.cursor()
     query = "UPDATE account SET name = %s where username = %s;"
     data = (str(name), str(username))
-    print ("username = " +str(username))
-    print ("name = "+ str(name))
     try:
         cursor.execute(query, data)
         conn.commit()
@@ -39,7 +37,6 @@ def get_name(conn, username):
     return records[0][0]
 
 def get_phone_number(conn, username):
-    print (username)
     cursor = conn.cursor()
     query = "SELECT phone_number FROM account WHERE username=%s"
     data = (username)
@@ -64,7 +61,7 @@ def register(conn, username, password, phone_number):
         return False
 
 def greetings():
-    conn_string = "host=host dbname=db_name user=user password=password"
+    conn_string = "host=host dbname=dbname user=user password=password"
     conn = psycopg2.connect(conn_string)
     user_info = {}
     user_info = init_handle(conn)
@@ -109,6 +106,8 @@ def get_requests(user_name, username, conn):
             vd.get_joke()
         elif request.upper() in recipe_sentences:
             vd.get_recipe(get_phone_number(conn, username))
+        elif request.upper() == 'OPEN':
+            system('open http://google.pt')
         request = vd.get_request('initial')
         print (request)
     system('say See you soon, {}!'.format(user_name))
