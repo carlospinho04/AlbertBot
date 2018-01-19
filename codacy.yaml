@@ -1,0 +1,8 @@
+exclude_paths:
+  - 'libs/*/test/**'
+  - 'libs/*/tests/**'
+  - 'libs/blpapi/**'
+  - 'oms/src/external/**'
+  - 'oms/vendor/**'
+  - '**/*test*.py'
+  - '**/setup.py'
