@@ -22,7 +22,7 @@ def set_name(conn, username, name):
     query = "UPDATE account SET name = %s where username = %s;"
     data = (str(name), str(username))
     try:
-        cursor.execute(query, data)
+        cursor.execute(query, data)asdadsas
         conn.commit()
     except:
         conn.rollback()
