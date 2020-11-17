@@ -19,6 +19,8 @@ def login(conn, username, password):
 
 def set_name(conn, username, name):
     cursor = conn.cursor()
+    cursor2 = conn.cursor()
+    cursor2 = conn.cursor()
     query = "UPDATE account SET name = %s where username = %s;"
     data = (str(name), str(username))
     try:
